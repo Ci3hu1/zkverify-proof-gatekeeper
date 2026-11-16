@@ -10,6 +10,13 @@
 // - Incoming HMAC verified against the RAW body BEFORE parsing — 401 on any
 //   failure. Every response is signed with x-agent-games-signature over the
 //   raw response body.
+// - Preflight handshake: the platform sends a signed request with type
+//   "agent-games.preflight.v1" (no input, no task_id) and expects HTTP 200
+//   { ok: true, protocolVersion: "v1" } signed. It is answered AFTER HMAC
+//   verification, so a bad secret still fails 401; a 400 from this endpoint
+//   proves the secret is right and only the handshake is missing (found
+//   17 Nov 2026: the dashboard preflight failed with 400 until this branch
+//   was added).
 // - Task IDs are idempotency keys (lib/core.js returns the cached response
 //   for a retry of a decided task_id).
 // - State (seen-set + response cache) lives in Upstash Redis via lib/store.js;
@@ -76,11 +83,18 @@ export default async function handler(req, res) {
     sendJson(res, 400, { error: "invalid json" });
     return;
   }
+  // Preflight handshake (see header): signed request, no input/task_id.
+  // Answered AFTER HMAC verification, BEFORE the task-envelope check —
+  // otherwise the missing input/task_id would 400 it.
+  if (task.type === "agent-games.preflight.v1") {
+    const preflight = { ok: true, protocolVersion: "v1" };
+    sendJson(res, 200, preflight, { [HMAC_HEADER]: "sha256=" + hmacHex(secret, JSON.stringify(preflight)) });
+    return;
+  }
   if (task.type !== "agent-games.proof-gatekeeper.v1" || !task.input || !task.task_id) {
     sendJson(res, 400, { error: "unexpected task envelope" });
     return;
   }
-
   // 2. Soft deadline guard: never start proving with <10 s left of the 60 s
   //    platform deadline (proving itself takes ~300 ms; this is belt-and-braces).
   if (Date.now() - startedAt > 50000) {

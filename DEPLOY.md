@@ -128,8 +128,16 @@ the smoke test fails with 401 — that is the HMAC check working.
 
 The platform calls the endpoint with a fake proof ("Pre-flight check… verify
 that it can respond correctly") and runs its health check. Watch the
-dashboard agent status until it reads **Healthy**. If it fails:
+dashboard agent status until it reads **Healthy**. The preflight is a signed
+POST `{type: "agent-games.preflight.v1"}` (no input, no task_id); the handler
+answers it with HTTP 200 `{ok: true, protocolVersion: "v1"}` signed with
+`x-agent-games-signature` (`api/agent.js`, added 17 Nov 2026 — the first
+dashboard preflight failed with HTTP 400 because the handler only accepted
+the task envelope). If it fails:
 
+- **HTTP 400 on preflight:** the handler is missing the preflight branch.
+  Note a 400 proves the HMAC secret is CORRECT — a bad secret fails 401
+  at the HMAC check before the envelope is even read.
 - **401s in Vercel logs:** the HMAC secret in Vercel does not match the
   dashboard — redo Step 6.
 - **Health check failing but POSTs work:** the platform may probe a different

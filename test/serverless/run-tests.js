@@ -321,6 +321,24 @@ console.log("\n== F. HMAC negatives + health ==");
   results.handler.push({ case: "hmac-negatives", tampered: res1.status, missing: res2.status, wrong: res3.status });
 }
 
+// ---- G. Preflight handshake (platform health check) ----
+// The dashboard preflight sends a signed {type:"agent-games.preflight.v1"}
+// with no input/task_id and expects HTTP 200 {ok:true, protocolVersion:"v1"}
+// signed. Before the fix (17 Nov 2026) it 400'd on the task-envelope check.
+console.log("\n== G. Preflight handshake ==");
+{
+  const r = await callAgent({ type: "agent-games.preflight.v1" });
+  const sigOk = r.body && r.headers[HMAC_HEADER] === "sha256=" + hmacHex(SECRET, r.raw);
+  check("signed preflight answered 200 {ok:true, protocolVersion:v1}",
+    r.status === 200 && r.body?.ok === true && r.body?.protocolVersion === "v1" && sigOk,
+    `HTTP ${r.status}, resp-sig-ok=${sigOk}`);
+
+  const bad = await callAgent({ type: "agent-games.preflight.v1" }, "wrong-secret");
+  check("preflight with wrong secret rejected 401", bad.status === 401, `HTTP ${bad.status}`);
+
+  results.handler.push({ case: "preflight", status: r.status, bad_secret_status: bad.status });
+}
+
 // Protocol sanity: the handler used pipelined GETs and SETs against the mock.
 console.log(`\n== Mock Upstash protocol ==`);
 console.log(`commands seen by mock: ${[...new Set(seenCommands)].join(", ")}`);
