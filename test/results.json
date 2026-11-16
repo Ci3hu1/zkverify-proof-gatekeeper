@@ -1,0 +1,489 @@
+{
+  "ran_at": "2026-11-16T14:51:36.795Z",
+  "vk_hash": "0x6b79c6012a6d8651f3e13bc4d2a20370280ab49700c90c5316d4168bfbad77b0",
+  "http": [
+    {
+      "task": "T0-valid",
+      "expect": {
+        "decision": "APPROVE",
+        "reason_code": "VALID_CONDITION"
+      },
+      "status": 200,
+      "ms": 1109,
+      "decision": "APPROVE",
+      "reason_code": "VALID_CONDITION",
+      "proof_present": true,
+      "response_sig_ok": true,
+      "prove_ms": 990,
+      "verify_ms": 98
+    },
+    {
+      "task": "T1-vk-substitution",
+      "expect": {
+        "decision": "REJECT",
+        "reason_code": "VK_SUBSTITUTION"
+      },
+      "status": 200,
+      "ms": 310,
+      "decision": "REJECT",
+      "reason_code": "VK_SUBSTITUTION",
+      "proof_present": true,
+      "response_sig_ok": true,
+      "prove_ms": 289,
+      "verify_ms": 19
+    },
+    {
+      "task": "T2-threshold-mismatch",
+      "expect": {
+        "decision": "REJECT",
+        "reason_code": "THRESHOLD_MISMATCH"
+      },
+      "status": 200,
+      "ms": 384,
+      "decision": "REJECT",
+      "reason_code": "THRESHOLD_MISMATCH",
+      "proof_present": true,
+      "response_sig_ok": true,
+      "prove_ms": 309,
+      "verify_ms": 72
+    },
+    {
+      "task": "T3-proof-reused",
+      "expect": {
+        "decision": "REJECT",
+        "reason_code": "PROOF_REUSED"
+      },
+      "status": 200,
+      "ms": 2,
+      "decision": "REJECT",
+      "reason_code": "PROOF_REUSED",
+      "proof_present": false,
+      "response_sig_ok": true,
+      "prove_ms": null,
+      "verify_ms": null
+    },
+    {
+      "task": "T4-expired",
+      "expect": {
+        "decision": "REJECT",
+        "reason_code": "EXPIRED_CONDITION"
+      },
+      "status": 200,
+      "ms": 380,
+      "decision": "REJECT",
+      "reason_code": "EXPIRED_CONDITION",
+      "proof_present": true,
+      "response_sig_ok": true,
+      "prove_ms": 305,
+      "verify_ms": 19
+    },
+    {
+      "task": "T5-recipient-mismatch",
+      "expect": {
+        "decision": "REJECT",
+        "reason_code": "RECIPIENT_MISMATCH"
+      },
+      "status": 200,
+      "ms": 323,
+      "decision": "REJECT",
+      "reason_code": "RECIPIENT_MISMATCH",
+      "proof_present": true,
+      "response_sig_ok": true,
+      "prove_ms": 298,
+      "verify_ms": 20
+    },
+    {
+      "task": "T6-amount-overflow",
+      "expect": {
+        "decision": "REJECT",
+        "reason_code": "AMOUNT_OVERFLOW"
+      },
+      "status": 200,
+      "ms": 290,
+      "decision": "REJECT",
+      "reason_code": "AMOUNT_OVERFLOW",
+      "proof_present": true,
+      "response_sig_ok": true,
+      "prove_ms": 229,
+      "verify_ms": 58
+    }
+  ],
+  "hmac": [
+    {
+      "case": "tampered-body",
+      "status": 401,
+      "expect": 401
+    },
+    {
+      "case": "missing-signature",
+      "status": 401,
+      "expect": 401
+    },
+    {
+      "case": "wrong-secret",
+      "status": 401,
+      "expect": 401
+    }
+  ],
+  "matrix": [
+    {
+      "task": "T0-valid",
+      "decision": 1,
+      "label": "correct",
+      "expect_prove": true,
+      "proved": true,
+      "verified": true,
+      "prove_ms": 307,
+      "verify_ms": 26,
+      "public_signals": [
+        "5085477138994229187532113507347089409130034114533497861036638793943648205715",
+        "4836144126773920907502496244340012141761656471453348073975163706578152814510",
+        "4836144126773920907502496244340012141761656471453348073975163706578152814510",
+        "1000",
+        "1460",
+        "19842201",
+        "19832000",
+        "1268867800305995395507099298277146472967273750273",
+        "1268867800305995395507099298277146472967273750273",
+        "500",
+        "1000",
+        "1",
+        "12285206862557242059294343006181173650373945713092228825753519331833957760831"
+      ],
+      "error": null,
+      "wall_ms": 333
+    },
+    {
+      "task": "T0-valid",
+      "decision": 0,
+      "label": "wrong",
+      "expect_prove": false,
+      "proved": false,
+      "verified": false,
+      "prove_ms": null,
+      "verify_ms": null,
+      "public_signals": null,
+      "error": "Error: Assert Failed. Error in template GatekeeperEvaluation_79 line: 102",
+      "wall_ms": 90
+    },
+    {
+      "task": "T1-vk-substitution",
+      "decision": 0,
+      "label": "correct",
+      "expect_prove": true,
+      "proved": true,
+      "verified": true,
+      "prove_ms": 300,
+      "verify_ms": 87,
+      "public_signals": [
+        "10908282147282530048970617638543579470187409994703709154925897474736611061167",
+        "4836144126773920907502496244340012141761656471453348073975163706578152814510",
+        "3735928559",
+        "1000",
+        "1460",
+        "19842201",
+        "19832000",
+        "1268867800305995395507099298277146472967273750273",
+        "1268867800305995395507099298277146472967273750273",
+        "500",
+        "1000",
+        "0",
+        "18653743681742449391854657808072085910527574820179625163592470244443596467114"
+      ],
+      "error": null,
+      "wall_ms": 388
+    },
+    {
+      "task": "T1-vk-substitution",
+      "decision": 1,
+      "label": "wrong",
+      "expect_prove": false,
+      "proved": false,
+      "verified": false,
+      "prove_ms": null,
+      "verify_ms": null,
+      "public_signals": null,
+      "error": "Error: Assert Failed. Error in template GatekeeperEvaluation_79 line: 102",
+      "wall_ms": 79
+    },
+    {
+      "task": "T2-threshold-mismatch",
+      "decision": 0,
+      "label": "correct",
+      "expect_prove": true,
+      "proved": true,
+      "verified": true,
+      "prove_ms": 306,
+      "verify_ms": 21,
+      "public_signals": [
+        "5497962313949118225516897402851128438399178634102332656683269705267404415673",
+        "4836144126773920907502496244340012141761656471453348073975163706578152814510",
+        "4836144126773920907502496244340012141761656471453348073975163706578152814510",
+        "1000",
+        "999",
+        "19842201",
+        "19832000",
+        "1268867800305995395507099298277146472967273750273",
+        "1268867800305995395507099298277146472967273750273",
+        "500",
+        "1000",
+        "0",
+        "17531772135774419495020673734912755424875545093863134621143397644800953497313"
+      ],
+      "error": null,
+      "wall_ms": 330
+    },
+    {
+      "task": "T2-threshold-mismatch",
+      "decision": 1,
+      "label": "wrong",
+      "expect_prove": false,
+      "proved": false,
+      "verified": false,
+      "prove_ms": null,
+      "verify_ms": null,
+      "public_signals": null,
+      "error": "Error: Assert Failed. Error in template GatekeeperEvaluation_79 line: 102",
+      "wall_ms": 48
+    },
+    {
+      "task": "T3-proof-reused",
+      "decision": 0,
+      "label": "correct",
+      "expect_prove": false,
+      "proved": false,
+      "verified": false,
+      "prove_ms": null,
+      "verify_ms": null,
+      "public_signals": null,
+      "error": "Error: Assert Failed. Error in template GatekeeperEvaluation_79 line: 102",
+      "wall_ms": 59
+    },
+    {
+      "task": "T3-proof-reused",
+      "decision": 1,
+      "label": "wrong",
+      "expect_prove": true,
+      "proved": true,
+      "verified": true,
+      "prove_ms": 273,
+      "verify_ms": 29,
+      "public_signals": [
+        "3341015220003078761321884983230688527530858240747272383092993501609540811850",
+        "4836144126773920907502496244340012141761656471453348073975163706578152814510",
+        "4836144126773920907502496244340012141761656471453348073975163706578152814510",
+        "1000",
+        "1460",
+        "19842201",
+        "19832000",
+        "1268867800305995395507099298277146472967273750273",
+        "1268867800305995395507099298277146472967273750273",
+        "500",
+        "1000",
+        "1",
+        "17415497969347378778043074901567492105177826063884429739745917051442168395458"
+      ],
+      "error": null,
+      "wall_ms": 303
+    },
+    {
+      "task": "T4-expired",
+      "decision": 0,
+      "label": "correct",
+      "expect_prove": true,
+      "proved": true,
+      "verified": true,
+      "prove_ms": 368,
+      "verify_ms": 20,
+      "public_signals": [
+        "6776667166516457095066743150932085458396472693774604869276386471232241325354",
+        "4836144126773920907502496244340012141761656471453348073975163706578152814510",
+        "4836144126773920907502496244340012141761656471453348073975163706578152814510",
+        "1000",
+        "1460",
+        "19842201",
+        "19842201",
+        "1268867800305995395507099298277146472967273750273",
+        "1268867800305995395507099298277146472967273750273",
+        "500",
+        "1000",
+        "0",
+        "12325950162994574597633218217995536545547757585575911144006377928466076426758"
+      ],
+      "error": null,
+      "wall_ms": 389
+    },
+    {
+      "task": "T4-expired",
+      "decision": 1,
+      "label": "wrong",
+      "expect_prove": false,
+      "proved": false,
+      "verified": false,
+      "prove_ms": null,
+      "verify_ms": null,
+      "public_signals": null,
+      "error": "Error: Assert Failed. Error in template GatekeeperEvaluation_79 line: 102",
+      "wall_ms": 40
+    },
+    {
+      "task": "T5-recipient-mismatch",
+      "decision": 0,
+      "label": "correct",
+      "expect_prove": true,
+      "proved": true,
+      "verified": true,
+      "prove_ms": 271,
+      "verify_ms": 63,
+      "public_signals": [
+        "8856421068096552530931002264435079554823444090026686205400098104809751991640",
+        "4836144126773920907502496244340012141761656471453348073975163706578152814510",
+        "4836144126773920907502496244340012141761656471453348073975163706578152814510",
+        "1000",
+        "1460",
+        "19842201",
+        "19832000",
+        "1268867800305995395507099298277146472967273750273",
+        "976237421810876558643867603103454673285798690817",
+        "500",
+        "1000",
+        "0",
+        "96217557793062892339644736921263800857622751602787466422162890343416887857"
+      ],
+      "error": null,
+      "wall_ms": 334
+    },
+    {
+      "task": "T5-recipient-mismatch",
+      "decision": 1,
+      "label": "wrong",
+      "expect_prove": false,
+      "proved": false,
+      "verified": false,
+      "prove_ms": null,
+      "verify_ms": null,
+      "public_signals": null,
+      "error": "Error: Assert Failed. Error in template GatekeeperEvaluation_79 line: 102",
+      "wall_ms": 51
+    },
+    {
+      "task": "T6-amount-overflow",
+      "decision": 0,
+      "label": "correct",
+      "expect_prove": true,
+      "proved": true,
+      "verified": true,
+      "prove_ms": 276,
+      "verify_ms": 18,
+      "public_signals": [
+        "11775420662094376541364634352867976891375248769340733112081852774891400471380",
+        "4836144126773920907502496244340012141761656471453348073975163706578152814510",
+        "4836144126773920907502496244340012141761656471453348073975163706578152814510",
+        "1000",
+        "1460",
+        "19842201",
+        "19832000",
+        "1268867800305995395507099298277146472967273750273",
+        "1268867800305995395507099298277146472967273750273",
+        "1001",
+        "1000",
+        "0",
+        "9901697080557947728582125501115483573355781000848914957403503636724007841402"
+      ],
+      "error": null,
+      "wall_ms": 294
+    },
+    {
+      "task": "T6-amount-overflow",
+      "decision": 1,
+      "label": "wrong",
+      "expect_prove": false,
+      "proved": false,
+      "verified": false,
+      "prove_ms": null,
+      "verify_ms": null,
+      "public_signals": null,
+      "error": "Error: Assert Failed. Error in template GatekeeperEvaluation_79 line: 102",
+      "wall_ms": 81
+    }
+  ],
+  "public_signals_annotation": [
+    {
+      "index": 0,
+      "value": "5085477138994229187532113507347089409130034114533497861036638793943648205715",
+      "field": "output-commitment"
+    },
+    {
+      "index": 1,
+      "value": "4836144126773920907502496244340012141761656471453348073975163706578152814510",
+      "field": "registeredVkHash",
+      "matches_input": true
+    },
+    {
+      "index": 2,
+      "value": "4836144126773920907502496244340012141761656471453348073975163706578152814510",
+      "field": "proofVkHash",
+      "matches_input": true
+    },
+    {
+      "index": 3,
+      "value": "1000",
+      "field": "minimum",
+      "matches_input": true
+    },
+    {
+      "index": 4,
+      "value": "1460",
+      "field": "publicBalance",
+      "matches_input": true
+    },
+    {
+      "index": 5,
+      "value": "19842201",
+      "field": "expiryBlock",
+      "matches_input": true
+    },
+    {
+      "index": 6,
+      "value": "19832000",
+      "field": "currentBlock",
+      "matches_input": true
+    },
+    {
+      "index": 7,
+      "value": "1268867800305995395507099298277146472967273750273",
+      "field": "recipient",
+      "matches_input": true
+    },
+    {
+      "index": 8,
+      "value": "1268867800305995395507099298277146472967273750273",
+      "field": "conditionRecipient",
+      "matches_input": true
+    },
+    {
+      "index": 9,
+      "value": "500",
+      "field": "amount",
+      "matches_input": true
+    },
+    {
+      "index": 10,
+      "value": "1000",
+      "field": "maxTransfer",
+      "matches_input": true
+    },
+    {
+      "index": 11,
+      "value": "1",
+      "field": "decision",
+      "matches_input": true
+    },
+    {
+      "index": 12,
+      "value": "12285206862557242059294343006181173650373945713092228825753519331833957760831",
+      "field": "taskId",
+      "matches_input": true
+    }
+  ]
+}

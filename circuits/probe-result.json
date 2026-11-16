@@ -1,0 +1,154 @@
+[
+  {
+    "name": "registeredVkHash",
+    "size": 1
+  },
+  {
+    "name": "proofVkHash",
+    "size": 1
+  },
+  {
+    "name": "minimum",
+    "size": 1
+  },
+  {
+    "name": "publicBalance",
+    "size": 1
+  },
+  {
+    "name": "expiryBlock",
+    "size": 1
+  },
+  {
+    "name": "currentBlock",
+    "size": 1
+  },
+  {
+    "name": "recipient",
+    "size": 1
+  },
+  {
+    "name": "conditionRecipient",
+    "size": 1
+  },
+  {
+    "name": "amount",
+    "size": 1
+  },
+  {
+    "name": "maxTransfer",
+    "size": 1
+  },
+  {
+    "name": "decision",
+    "size": 1
+  },
+  {
+    "name": "taskId",
+    "size": 1
+  },
+  {
+    "name": "salt",
+    "size": 1
+  },
+  {
+    "name": "proofTx",
+    "size": 0
+  },
+  {
+    "name": "proofReference",
+    "size": 0
+  },
+  {
+    "name": "seen",
+    "size": 0
+  },
+  {
+    "name": "isReused",
+    "size": 0
+  },
+  {
+    "name": "reused",
+    "size": 0
+  },
+  {
+    "name": "valid",
+    "size": 0
+  },
+  {
+    "name": "approved",
+    "size": 0
+  },
+  {
+    "name": "threshold",
+    "size": 0
+  },
+  {
+    "name": "balance",
+    "size": 0
+  },
+  {
+    "name": "minBalance",
+    "size": 0
+  },
+  {
+    "name": "maxAmount",
+    "size": 0
+  },
+  {
+    "name": "transferAmount",
+    "size": 0
+  },
+  {
+    "name": "expiry",
+    "size": 0
+  },
+  {
+    "name": "block",
+    "size": 0
+  },
+  {
+    "name": "current",
+    "size": 0
+  },
+  {
+    "name": "vkHash",
+    "size": 0
+  },
+  {
+    "name": "registeredVk",
+    "size": 0
+  },
+  {
+    "name": "proofVk",
+    "size": 0
+  },
+  {
+    "name": "task_id",
+    "size": 0
+  },
+  {
+    "name": "taskID",
+    "size": 0
+  },
+  {
+    "name": "nonce",
+    "size": 0
+  },
+  {
+    "name": "commitment",
+    "size": 0
+  },
+  {
+    "name": "output",
+    "size": 0
+  },
+  {
+    "name": "action",
+    "size": 0
+  },
+  {
+    "name": "allow",
+    "size": 0
+  }
+]
