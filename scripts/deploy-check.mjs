@@ -70,7 +70,7 @@ const ms = Date.now() - t0;
 const resRaw = await res.text();
 let body = null;
 try { body = JSON.parse(resRaw); } catch { /* leave null */ }
-const sigOk = res.headers.get("x-agent-games-signature") === "sha256=" + hmacHex(SECRET, resRaw);
+const sigOk = res.headers.get("x-agent-games-signature") === hmacHex(SECRET, resRaw);
 check("POST valid task -> 200 APPROVE/VALID_CONDITION",
   res.status === 200 && body?.decision === "APPROVE" && body?.reason_code === "VALID_CONDITION",
   `HTTP ${res.status} in ${ms}ms, decision=${body?.decision}/${body?.reason_code}`);

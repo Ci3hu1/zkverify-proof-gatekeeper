@@ -204,7 +204,7 @@ console.log("\n== A. Handler decisions (mock Redis store) ==");
 for (const t of TASKS) {
   const r = await callAgent(t.task);
   const decisionOk = r.body && r.body.decision === t.expect.decision && r.body.reason_code === t.expect.reason_code;
-  const sigOk = r.body && r.headers[HMAC_HEADER] === "sha256=" + hmacHex(SECRET, r.raw);
+  const sigOk = r.body && r.headers[HMAC_HEADER] === hmacHex(SECRET, r.raw);
   const expectProof = t.id !== "T3-proof-reused";
   const hasProof = r.body && typeof r.body.proof === "object";
   check(`${t.id}: decision ${t.expect.decision}/${t.expect.reason_code}`,
@@ -328,7 +328,7 @@ console.log("\n== F. HMAC negatives + health ==");
 console.log("\n== G. Preflight handshake ==");
 {
   const r = await callAgent({ type: "agent-games.preflight.v1" });
-  const sigOk = r.body && r.headers[HMAC_HEADER] === "sha256=" + hmacHex(SECRET, r.raw);
+  const sigOk = r.body && r.headers[HMAC_HEADER] === hmacHex(SECRET, r.raw);
   check("signed preflight answered 200 {ok:true, protocolVersion:v1}",
     r.status === 200 && r.body?.ok === true && r.body?.protocolVersion === "v1" && sigOk,
     `HTTP ${r.status}, resp-sig-ok=${sigOk}`);

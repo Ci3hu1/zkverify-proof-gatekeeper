@@ -88,7 +88,7 @@ export default async function handler(req, res) {
   // otherwise the missing input/task_id would 400 it.
   if (task.type === "agent-games.preflight.v1") {
     const preflight = { ok: true, protocolVersion: "v1" };
-    sendJson(res, 200, preflight, { [HMAC_HEADER]: "sha256=" + hmacHex(secret, JSON.stringify(preflight)) });
+    sendJson(res, 200, preflight, { [HMAC_HEADER]: hmacHex(secret, JSON.stringify(preflight)) });
     return;
   }
   if (task.type !== "agent-games.proof-gatekeeper.v1" || !task.input || !task.task_id) {
@@ -103,5 +103,5 @@ export default async function handler(req, res) {
   }
 
   const { status, body } = await handleTask(task, store, { secret });
-  sendJson(res, status, body, { [HMAC_HEADER]: "sha256=" + hmacHex(secret, JSON.stringify(body)) });
+  sendJson(res, status, body, { [HMAC_HEADER]: hmacHex(secret, JSON.stringify(body)) });
 }
