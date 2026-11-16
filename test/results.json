@@ -1,5 +1,5 @@
 {
-  "ran_at": "2026-11-16T14:51:36.795Z",
+  "ran_at": "2026-11-16T15:14:01.741Z",
   "vk_hash": "0x6b79c6012a6d8651f3e13bc4d2a20370280ab49700c90c5316d4168bfbad77b0",
   "http": [
     {
@@ -9,13 +9,13 @@
         "reason_code": "VALID_CONDITION"
       },
       "status": 200,
-      "ms": 1109,
+      "ms": 974,
       "decision": "APPROVE",
       "reason_code": "VALID_CONDITION",
       "proof_present": true,
       "response_sig_ok": true,
-      "prove_ms": 990,
-      "verify_ms": 98
+      "prove_ms": 859,
+      "verify_ms": 92
     },
     {
       "task": "T1-vk-substitution",
@@ -24,13 +24,13 @@
         "reason_code": "VK_SUBSTITUTION"
       },
       "status": 200,
-      "ms": 310,
+      "ms": 322,
       "decision": "REJECT",
       "reason_code": "VK_SUBSTITUTION",
       "proof_present": true,
       "response_sig_ok": true,
-      "prove_ms": 289,
-      "verify_ms": 19
+      "prove_ms": 297,
+      "verify_ms": 21
     },
     {
       "task": "T2-threshold-mismatch",
@@ -39,13 +39,13 @@
         "reason_code": "THRESHOLD_MISMATCH"
       },
       "status": 200,
-      "ms": 384,
+      "ms": 374,
       "decision": "REJECT",
       "reason_code": "THRESHOLD_MISMATCH",
       "proof_present": true,
       "response_sig_ok": true,
-      "prove_ms": 309,
-      "verify_ms": 72
+      "prove_ms": 352,
+      "verify_ms": 20
     },
     {
       "task": "T3-proof-reused",
@@ -69,13 +69,13 @@
         "reason_code": "EXPIRED_CONDITION"
       },
       "status": 200,
-      "ms": 380,
+      "ms": 317,
       "decision": "REJECT",
       "reason_code": "EXPIRED_CONDITION",
       "proof_present": true,
       "response_sig_ok": true,
-      "prove_ms": 305,
-      "verify_ms": 19
+      "prove_ms": 299,
+      "verify_ms": 16
     },
     {
       "task": "T5-recipient-mismatch",
@@ -84,13 +84,13 @@
         "reason_code": "RECIPIENT_MISMATCH"
       },
       "status": 200,
-      "ms": 323,
+      "ms": 404,
       "decision": "REJECT",
       "reason_code": "RECIPIENT_MISMATCH",
       "proof_present": true,
       "response_sig_ok": true,
-      "prove_ms": 298,
-      "verify_ms": 20
+      "prove_ms": 359,
+      "verify_ms": 40
     },
     {
       "task": "T6-amount-overflow",
@@ -99,13 +99,13 @@
         "reason_code": "AMOUNT_OVERFLOW"
       },
       "status": 200,
-      "ms": 290,
+      "ms": 287,
       "decision": "REJECT",
       "reason_code": "AMOUNT_OVERFLOW",
       "proof_present": true,
       "response_sig_ok": true,
-      "prove_ms": 229,
-      "verify_ms": 58
+      "prove_ms": 269,
+      "verify_ms": 16
     }
   ],
   "hmac": [
@@ -133,8 +133,8 @@
       "expect_prove": true,
       "proved": true,
       "verified": true,
-      "prove_ms": 307,
-      "verify_ms": 26,
+      "prove_ms": 278,
+      "verify_ms": 80,
       "public_signals": [
         "5085477138994229187532113507347089409130034114533497861036638793943648205715",
         "4836144126773920907502496244340012141761656471453348073975163706578152814510",
@@ -151,7 +151,7 @@
         "12285206862557242059294343006181173650373945713092228825753519331833957760831"
       ],
       "error": null,
-      "wall_ms": 333
+      "wall_ms": 358
     },
     {
       "task": "T0-valid",
@@ -164,7 +164,7 @@
       "verify_ms": null,
       "public_signals": null,
       "error": "Error: Assert Failed. Error in template GatekeeperEvaluation_79 line: 102",
-      "wall_ms": 90
+      "wall_ms": 38
     },
     {
       "task": "T1-vk-substitution",
@@ -173,8 +173,8 @@
       "expect_prove": true,
       "proved": true,
       "verified": true,
-      "prove_ms": 300,
-      "verify_ms": 87,
+      "prove_ms": 276,
+      "verify_ms": 20,
       "public_signals": [
         "10908282147282530048970617638543579470187409994703709154925897474736611061167",
         "4836144126773920907502496244340012141761656471453348073975163706578152814510",
@@ -191,7 +191,7 @@
         "18653743681742449391854657808072085910527574820179625163592470244443596467114"
       ],
       "error": null,
-      "wall_ms": 388
+      "wall_ms": 297
     },
     {
       "task": "T1-vk-substitution",
@@ -204,7 +204,7 @@
       "verify_ms": null,
       "public_signals": null,
       "error": "Error: Assert Failed. Error in template GatekeeperEvaluation_79 line: 102",
-      "wall_ms": 79
+      "wall_ms": 76
     },
     {
       "task": "T2-threshold-mismatch",
@@ -213,8 +213,8 @@
       "expect_prove": true,
       "proved": true,
       "verified": true,
-      "prove_ms": 306,
-      "verify_ms": 21,
+      "prove_ms": 304,
+      "verify_ms": 15,
       "public_signals": [
         "5497962313949118225516897402851128438399178634102332656683269705267404415673",
         "4836144126773920907502496244340012141761656471453348073975163706578152814510",
@@ -231,7 +231,7 @@
         "17531772135774419495020673734912755424875545093863134621143397644800953497313"
       ],
       "error": null,
-      "wall_ms": 330
+      "wall_ms": 320
     },
     {
       "task": "T2-threshold-mismatch",
@@ -244,7 +244,7 @@
       "verify_ms": null,
       "public_signals": null,
       "error": "Error: Assert Failed. Error in template GatekeeperEvaluation_79 line: 102",
-      "wall_ms": 48
+      "wall_ms": 84
     },
     {
       "task": "T3-proof-reused",
@@ -257,7 +257,7 @@
       "verify_ms": null,
       "public_signals": null,
       "error": "Error: Assert Failed. Error in template GatekeeperEvaluation_79 line: 102",
-      "wall_ms": 59
+      "wall_ms": 40
     },
     {
       "task": "T3-proof-reused",
@@ -266,8 +266,8 @@
       "expect_prove": true,
       "proved": true,
       "verified": true,
-      "prove_ms": 273,
-      "verify_ms": 29,
+      "prove_ms": 280,
+      "verify_ms": 83,
       "public_signals": [
         "3341015220003078761321884983230688527530858240747272383092993501609540811850",
         "4836144126773920907502496244340012141761656471453348073975163706578152814510",
@@ -284,7 +284,7 @@
         "17415497969347378778043074901567492105177826063884429739745917051442168395458"
       ],
       "error": null,
-      "wall_ms": 303
+      "wall_ms": 365
     },
     {
       "task": "T4-expired",
@@ -293,8 +293,8 @@
       "expect_prove": true,
       "proved": true,
       "verified": true,
-      "prove_ms": 368,
-      "verify_ms": 20,
+      "prove_ms": 313,
+      "verify_ms": 78,
       "public_signals": [
         "6776667166516457095066743150932085458396472693774604869276386471232241325354",
         "4836144126773920907502496244340012141761656471453348073975163706578152814510",
@@ -311,7 +311,7 @@
         "12325950162994574597633218217995536545547757585575911144006377928466076426758"
       ],
       "error": null,
-      "wall_ms": 389
+      "wall_ms": 391
     },
     {
       "task": "T4-expired",
@@ -324,7 +324,7 @@
       "verify_ms": null,
       "public_signals": null,
       "error": "Error: Assert Failed. Error in template GatekeeperEvaluation_79 line: 102",
-      "wall_ms": 40
+      "wall_ms": 43
     },
     {
       "task": "T5-recipient-mismatch",
@@ -334,7 +334,7 @@
       "proved": true,
       "verified": true,
       "prove_ms": 271,
-      "verify_ms": 63,
+      "verify_ms": 16,
       "public_signals": [
         "8856421068096552530931002264435079554823444090026686205400098104809751991640",
         "4836144126773920907502496244340012141761656471453348073975163706578152814510",
@@ -351,7 +351,7 @@
         "96217557793062892339644736921263800857622751602787466422162890343416887857"
       ],
       "error": null,
-      "wall_ms": 334
+      "wall_ms": 288
     },
     {
       "task": "T5-recipient-mismatch",
@@ -364,7 +364,7 @@
       "verify_ms": null,
       "public_signals": null,
       "error": "Error: Assert Failed. Error in template GatekeeperEvaluation_79 line: 102",
-      "wall_ms": 51
+      "wall_ms": 85
     },
     {
       "task": "T6-amount-overflow",
@@ -374,7 +374,7 @@
       "proved": true,
       "verified": true,
       "prove_ms": 276,
-      "verify_ms": 18,
+      "verify_ms": 15,
       "public_signals": [
         "11775420662094376541364634352867976891375248769340733112081852774891400471380",
         "4836144126773920907502496244340012141761656471453348073975163706578152814510",
@@ -391,7 +391,7 @@
         "9901697080557947728582125501115483573355781000848914957403503636724007841402"
       ],
       "error": null,
-      "wall_ms": 294
+      "wall_ms": 291
     },
     {
       "task": "T6-amount-overflow",
@@ -404,7 +404,7 @@
       "verify_ms": null,
       "public_signals": null,
       "error": "Error: Assert Failed. Error in template GatekeeperEvaluation_79 line: 102",
-      "wall_ms": 81
+      "wall_ms": 41
     }
   ],
   "public_signals_annotation": [

@@ -1,0 +1,114 @@
+{
+  "ran_at": "2026-11-16T15:14:08.000Z",
+  "handler": [
+    {
+      "task": "T0-valid",
+      "status": 200,
+      "ms": 995,
+      "decision": "APPROVE",
+      "reason_code": "VALID_CONDITION",
+      "proof_present": true,
+      "response_sig_ok": true,
+      "store": "redis"
+    },
+    {
+      "task": "T1-vk-substitution",
+      "status": 200,
+      "ms": 328,
+      "decision": "REJECT",
+      "reason_code": "VK_SUBSTITUTION",
+      "proof_present": true,
+      "response_sig_ok": true,
+      "store": "redis"
+    },
+    {
+      "task": "T2-threshold-mismatch",
+      "status": 200,
+      "ms": 368,
+      "decision": "REJECT",
+      "reason_code": "THRESHOLD_MISMATCH",
+      "proof_present": true,
+      "response_sig_ok": true,
+      "store": "redis"
+    },
+    {
+      "task": "T3-proof-reused",
+      "status": 200,
+      "ms": 5,
+      "decision": "REJECT",
+      "reason_code": "PROOF_REUSED",
+      "proof_present": false,
+      "response_sig_ok": true,
+      "store": "redis"
+    },
+    {
+      "task": "T4-expired",
+      "status": 200,
+      "ms": 338,
+      "decision": "REJECT",
+      "reason_code": "EXPIRED_CONDITION",
+      "proof_present": true,
+      "response_sig_ok": true,
+      "store": "redis"
+    },
+    {
+      "task": "T5-recipient-mismatch",
+      "status": 200,
+      "ms": 336,
+      "decision": "REJECT",
+      "reason_code": "RECIPIENT_MISMATCH",
+      "proof_present": true,
+      "response_sig_ok": true,
+      "store": "redis"
+    },
+    {
+      "task": "T6-amount-overflow",
+      "status": 200,
+      "ms": 378,
+      "decision": "REJECT",
+      "reason_code": "AMOUNT_OVERFLOW",
+      "proof_present": true,
+      "response_sig_ok": true,
+      "store": "redis"
+    },
+    {
+      "case": "hmac-negatives",
+      "tampered": 401,
+      "missing": 401,
+      "wrong": 401
+    }
+  ],
+  "idempotency": [
+    {
+      "case": "retry-approve",
+      "identical": true,
+      "first": "APPROVE",
+      "second": "APPROVE",
+      "store": "redis"
+    },
+    {
+      "case": "retry-reject",
+      "identical": true,
+      "first": "REJECT",
+      "second": "REJECT",
+      "store": "redis"
+    }
+  ],
+  "store": [
+    {
+      "case": "fresh-task-reused-tx",
+      "decision": "REJECT",
+      "reason_code": "PROOF_REUSED"
+    },
+    {
+      "case": "ttl-expiry",
+      "before_cached": true,
+      "after_cached": false
+    },
+    {
+      "case": "redis-down-fallback",
+      "decision": "APPROVE",
+      "store": "memory-fallback"
+    }
+  ]
+}

@@ -112,9 +112,40 @@ and never put one in code or logs.
 | `circuits/probe-result.json` | Probe output (13 input signals found) |
 | `BUILD-LOG.md` | Full build log: sources, protocol facts, decision logic, results, findings, scope |
 
+## Serverless port — arena entry (Vercel + Upstash Redis)
+
+The local server above is the prototype. The deploy-ready arena version lives
+in the same repo — same decision + proving logic, with durable state:
+
+- `api/agent.js` — `POST /api/agent` (the endpoint to register in the
+  dashboard), `GET` = health probe
+- `api/health.js` — `GET /api/health`
+- `lib/core.js`, `lib/decide.js`, `lib/hmac.js`, `lib/store.js` — shared logic
+  (the local server uses the same modules)
+- `lib/store.js` — durable seen-set + per-task response cache in Upstash
+  Redis (free tier, plain REST, no SDK). Fixes the idempotency bug: a retry of
+  a decided `task_id` returns the cached response instead of flipping
+  APPROVE -> REJECT/PROOF_REUSED. A Redis outage falls back to in-memory for
+  that call only (decisions stay correct; logged as `memory-fallback`).
+- `vercel.json` — `maxDuration: 60` (the platform's 60 s deadline), circuit
+  files bundled via `includeFiles`
+- `DEPLOY.md` — exact deploy steps. Vercel + Upstash signups are the user's
+  own clicks; $0, no card. No account has been created and nothing has been
+  deployed from this repo yet.
+- `scripts/deploy-check.mjs` — post-deploy smoke test (GET health + signed
+  synthetic task, verifies the response signature)
+- `test/serverless/run-tests.js` — handler tests against a mock Upstash REST
+  server: 7/7 decisions, idempotency 2/2 identical, TTL expiry, Redis-down
+  fallback, HMAC negatives 3/3, health endpoints
+
+Tests: `npm test` (local suite) and `npm run test:serverless` — or
+`npm run test:all` for both.
+
 ## Scope — what this is NOT
 
-- No public HTTPS endpoint (127.0.0.1 only; no hosting, no domain).
+- No public HTTPS endpoint (127.0.0.1 only; no hosting, no domain) — the
+  serverless port above is deploy-ready but NOT yet deployed (needs the
+  Vercel + Upstash signups in DEPLOY.md, which are the user's own clicks).
 - No agent registered for the Proof Gatekeeper arena event; no endpoint
   registered with the platform; no health check; no signed preflight.
 - No practice task, no scored round, no live task envelope — all 7 tasks are
