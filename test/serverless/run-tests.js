@@ -77,7 +77,9 @@ const TASKS = [
     expect: { decision: "REJECT", reason_code: "AMOUNT_OVERFLOW" } },
 ];
 
-// ---- Mock Upstash REST server (POST / with ["CMD",...] or [["CMD",...],...]) ----
+// ---- Mock Upstash REST server (POST / with ["CMD",...] or POST /pipeline
+// with [["CMD",...],...]) — mirrors real Upstash: a pipeline posted to the
+// bare URL is a syntax error (HTTP 400). ----
 function startMockUpstash() {
   const data = new Map(); // key -> { value, expiresAt }
   const seenCommands = [];
@@ -99,6 +101,17 @@ function startMockUpstash() {
         return;
       }
       const isPipeline = Array.isArray(commands[0]);
+      const pathname = new URL(req.url, "http://127.0.0.1").pathname;
+      if (isPipeline && pathname !== "/pipeline") {
+        res.writeHead(400, { "content-type": "application/json" });
+        res.end(JSON.stringify({ error: "ERR pipeline must be sent to /pipeline" }));
+        return;
+      }
+      if (!isPipeline && pathname !== "/") {
+        res.writeHead(400, { "content-type": "application/json" });
+        res.end(JSON.stringify({ error: "ERR single command must be sent to /" }));
+        return;
+      }
       const list = isPipeline ? commands : [commands];
       const results = list.map((cmd) => {
         seenCommands.push(cmd[0]);
